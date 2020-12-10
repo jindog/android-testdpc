@@ -89,7 +89,9 @@ public class PostProvisioningTask {
         // From M onwards, permissions are not auto-granted, so we need to manually grant
         // permissions for TestDPC.
         if (Util.isAtLeastM()) {
-            autoGrantRequestedPermissionsToSelf();
+            new Thread(()-> {
+                autoGrantRequestedPermissionsToSelf();
+            }).start();
         }
 
         // Retreive the admin extras bundle, which we can use to determine the original context for
